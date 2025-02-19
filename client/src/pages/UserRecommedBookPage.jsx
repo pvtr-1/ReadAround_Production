@@ -15,11 +15,11 @@ const UserRecommendBookPage = ({  }) => {
   useEffect(() => {
     const fetchSocialData = async () => {
       try {
-        const followersRes = await axios.get(`http://127.0.0.1:7000/api/social/${user_id}/followers`);
+        const followersRes = await axios.get(`https://readaround.onrender.com:6000/api/social/${user_id}/followers`);
         const followerIds = followersRes.data.data.map((item) => item.follower);
 
         const userPromises = followerIds.map((id) =>
-          axios.get(`http://127.0.0.1:7000/api/user/details?id=${id}`)
+          axios.get(`https://readaround.onrender.com:6000/api/user/details?id=${id}`)
         );
         const users = await Promise.all(userPromises);
 
@@ -48,7 +48,7 @@ const UserRecommendBookPage = ({  }) => {
     }
 
     try {
-      const res = await axios.get(`http://127.0.0.1:7000/api/books/search?title=${term}`);
+      const res = await axios.get(`https://readaround.onrender.com:6000/api/books/search?title=${term}`);
       setSearchResults(res.data.books);
     } catch (err) {
       console.error("Failed to search books", err);
@@ -62,7 +62,7 @@ const UserRecommendBookPage = ({  }) => {
     }
 
     try {
-      await axios.post("http://127.0.0.1:7000/api/recommend/recommend", {
+      await axios.post("https://readaround.onrender.com:6000/api/recommend/recommend", {
         from_user: user_id,
         to_user: selectedFollower.id,
         book_id: selectedBook.id,

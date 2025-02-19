@@ -37,16 +37,16 @@
 //         // Fetch all required data in parallel for better performance
 //         const [userResponse, booksResponse, recommendationsResponse, reviewsResponse] = 
 //           await Promise.all([
-//             axios.get("http://127.0.0.1:7000/api/user/dashboard", {
+//             axios.get("https://readaround.onrender.com:6000/api/user/dashboard", {
 //               headers: { Authorization: `Bearer ${token}` }
 //             }),
-//             axios.get("http://127.0.0.1:7000/api/books/recent", {
+//             axios.get("https://readaround.onrender.com:6000/api/books/recent", {
 //               headers: { Authorization: `Bearer ${token}` }
 //             }),
-//             axios.get("http://127.0.0.1:7000/api/recommendations", {
+//             axios.get("https://readaround.onrender.com:6000/api/recommendations", {
 //               headers: { Authorization: `Bearer ${token}` }
 //             }),
-//             axios.get("http://127.0.0.1:7000/api/reviews/recent", {
+//             axios.get("https://readaround.onrender.com:6000/api/reviews/recent", {
 //               headers: { Authorization: `Bearer ${token}` }
 //             })
 //           ]);
@@ -216,7 +216,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:7000/api/user/details?id=${user_id}`);
+        const response = await axios.get(`https://readaround.onrender.com:6000/api/user/details?id=${user_id}`);
         setDashboardData(response.data.user);
         console.log(response.data.user);
       } catch (error) {
@@ -235,7 +235,7 @@ const Dashboard = () => {
         try {
           console.log(dashboardData.saved_books);
           const bookPromises = dashboardData.saved_books.map((bookId) =>
-            axios.get(`http://127.0.0.1:7000/api/books/${bookId}`)
+            axios.get(`https://readaround.onrender.com:6000/api/books/${bookId}`)
           );
           const books = await Promise.all(bookPromises);
           setSavedBooks(books.map((res) => res.data.data));
@@ -251,7 +251,7 @@ const Dashboard = () => {
   //fetching reviews
   const fetchReviews = async () => {
     try {
-      const response = await axios.get(`http://127.0.0.1:7000/api/review/get?id=${user_id}`);
+      const response = await axios.get(`https://readaround.onrender.com:6000/api/review/get?id=${user_id}`);
       setReviews(response.data.data);
     } catch (error) {
       console.error("Failed to fetch reviews.", error);
@@ -265,7 +265,7 @@ const Dashboard = () => {
       });
       setRecommendations(response.data);
       const bookRequests = Object.values(response.data.book_id).map((bookId) =>
-        axios.get(`http://127.0.0.1:7000/api/books/${bookId}`)
+        axios.get(`https://readaround.onrender.com:6000/api/books/${bookId}`)
       );
       const bookResponses = await Promise.all(bookRequests);
       const books = bookResponses.map((response) => response.data.data);
@@ -288,8 +288,8 @@ const Dashboard = () => {
     const fetchSocialData = async () => {
       try {
         const [followersRes, followingRes] = await Promise.all([
-          axios.get(`http://127.0.0.1:7000/api/social/${user_id}/followers`),
-          axios.get(`http://127.0.0.1:7000/api/social/${user_id}/following`),
+          axios.get(`https://readaround.onrender.com:6000/api/social/${user_id}/followers`),
+          axios.get(`https://readaround.onrender.com:6000/api/social/${user_id}/following`),
         ]);
     
         const followerIds = followersRes.data.data.map((item) => item.follower);
@@ -301,7 +301,7 @@ const Dashboard = () => {
         const uniqueUserIds = [...new Set([...uniqueFollowerIds, ...uniqueFollowingIds])];
     
         const userPromises = uniqueUserIds.map((id) =>
-          axios.get(`http://127.0.0.1:7000/api/user/details?id=${id}`)
+          axios.get(`https://readaround.onrender.com:6000/api/user/details?id=${id}`)
         );
         const users = await Promise.all(userPromises);
     
@@ -334,7 +334,7 @@ const Dashboard = () => {
       const action = isFollowing ? "unfollow" : "follow";
 
       isFollowing ? (
-        await axios.delete(`http://127.0.0.1:7000/api/social/unfollow`, {
+        await axios.delete(`https://readaround.onrender.com:6000/api/social/unfollow`, {
          data: { 
           follower: user_id,
           followed: targetUserId
@@ -342,7 +342,7 @@ const Dashboard = () => {
         })
       )
       : (
-        await axios.post(`http://127.0.0.1:7000/api/social/follow`, {
+        await axios.post(`https://readaround.onrender.com:6000/api/social/follow`, {
          follower: user_id,
         followed_id: targetUserId,
         })
@@ -366,7 +366,7 @@ const Dashboard = () => {
   // saving the edited review
 const handleSaveClick = async (reviewId) => {
     try {
-      const response = await axios.put(`http://127.0.0.1:7000/api/review/${reviewId}`, {
+      const response = await axios.put(`https://readaround.onrender.com:6000/api/review/${reviewId}`, {
         text: editedText,
         rating: editedRating,
       });
@@ -427,7 +427,7 @@ const handleDeleteBook = async (bookId) => {
 
 const handleUsernameClick = async (userId) => {
   try {
-    const response = await axios.get(`http://127.0.0.1:7000/api/user/details?id=${userId}`);
+    const response = await axios.get(`https://readaround.onrender.com:6000/api/user/details?id=${userId}`);
     const userData = response.data.user;
     
     if (userData) {
@@ -442,16 +442,16 @@ const handleUsernameClick = async (userId) => {
 useEffect(() => {
   const fetchFollowedRecommendations = async () => {
     try {
-      const response = await axios.get(`http://127.0.0.1:7000/api/recommend/recommendations/${user_id}`);
+      const response = await axios.get(`https://readaround.onrender.com:6000/api/recommend/recommendations/${user_id}`);
       const recommendationsData = response.data.recommendations;
       console.log(recommendationsData);
 
       setFollowedRecommendations(recommendationsData);
       // const bookRequests = recommendationsData.map((rec) =>
-      //   axios.get(`http://127.0.0.1:7000/api/books/${rec.book}`)
+      //   axios.get(`https://readaround.onrender.com:6000/api/books/${rec.book}`)
       // );
       // const userRequests = recommendationsData.map((rec) =>
-      //   axios.get(`http://127.0.0.1:7000/api/user/details?id=${rec.recommended_by}`)
+      //   axios.get(`https://readaround.onrender.com:6000/api/user/details?id=${rec.recommended_by}`)
       // );
 
       // const [bookResponses, userResponses] = await Promise.all([
@@ -480,7 +480,7 @@ useEffect(() => {
 
   const handleDelete = async (recommendationId) => {
     try {      
-      await axios.delete(`http://127.0.0.1:7000/api/recommend/recommendations/${recommendationId}`);
+      await axios.delete(`https://readaround.onrender.com:6000/api/recommend/recommendations/${recommendationId}`);
       setFollowedRecommendations((prev) => prev.filter((rec) => rec.id !== recommendationId));
     } catch (error) {
       console.error("Error deleting recommendation:", error);

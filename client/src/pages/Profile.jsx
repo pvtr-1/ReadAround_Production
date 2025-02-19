@@ -294,7 +294,7 @@ const UserProfile = () => {
         const decodedToken = jwt.decode(token).id;
         console.log(decodedToken); // Optional: Log decoded token for debugging
 
-        const response = await axios.get("http://127.0.0.1:7000/api/user/details?id="+decodedToken, {
+        const response = await axios.get("https://readaround.onrender.com:6000/api/user/details?id="+decodedToken, {
           headers: { Authorization: `Bearer ${token}` },
         });
         console.log(response.data.user);
