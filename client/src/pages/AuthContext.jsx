@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
       }
 
       try {
-        const response = await axiosInstance.get(`https://readaround.onrender.com:6000/api/user/details?id=${userId}`);
+        const response = await axiosInstance.get(`https://readaround.onrender.com:7000/api/user/details?id=${userId}`);
         setUser(response.data.user);
       } catch (error) {
         console.error("Error fetching user:", error);

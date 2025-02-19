@@ -32,7 +32,7 @@ const BookReviewPage = () => {
     };
 
     try {
-      const response = await axios.post("https://readaround.onrender.com:6000/api/review/add", review, {
+      const response = await axios.post("https://readaround.onrender.com:7000/api/review/add", review, {
         headers: {
           "Content-Type": "application/json",
         },

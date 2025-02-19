@@ -6,7 +6,7 @@ import ReviewCard from "../components/ReviewCard";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 
-const API_URL = "https://readaround.onrender.com:6000/api/feed";
+const API_URL = "https://readaround.onrender.com:7000/api/feed";
 
 const FeedPage = () => {
   const [books, setBooks] = useState([]);
@@ -43,7 +43,7 @@ const FeedPage = () => {
       return;
     }
     try {
-      const res = await axios.get(`https://readaround.onrender.com:6000/api/books/search?title=${term}`);
+      const res = await axios.get(`https://readaround.onrender.com:7000/api/books/search?title=${term}`);
       setSearchResults(res.data.books);
     } catch (err) {
       setError("Failed to search books");

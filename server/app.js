@@ -16,7 +16,7 @@ connectDB();
 
 // Enable CORS for cross-origin requests
 app.use(cors({
-  origin:true,
+  origin: "https://readaround-frontend.onrender.com",
 }));
 
 
@@ -60,7 +60,7 @@ const createAdmin = async () => {
 
 // Basic route
 app.get('/', (req, res) => {
-  res.send('Server is running on port 6000');
+  res.send('Server is running on port 7000');
 });
 
 

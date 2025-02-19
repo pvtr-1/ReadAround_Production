@@ -35,7 +35,7 @@ const ResetPassword = () => {
 
     try {
       // API call to reset password using Axios
-      const response = await axios.post("https://readaround.onrender.com:6000/api/reset_password", formData, {
+      const response = await axios.post("https://readaround.onrender.com:7000/api/reset_password", formData, {
         headers: {
           "Content-Type": "application/json",
         },

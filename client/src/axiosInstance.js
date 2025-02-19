@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export const apiUrl = "https://readaround.onrender.com:6000/"
+export const apiUrl = "https://readaround.onrender.com:7000/"
 // Create an Axios instance
 const axiosInstance = axios.create({
-  baseURL: 'https://readaround.onrender.com:6000/api', // Base API URL
+  baseURL: 'https://readaround.onrender.com:7000/api', // Base API URL
 });
 
 // Interceptor to add Authorization header with the token

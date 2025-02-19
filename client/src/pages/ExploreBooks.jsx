@@ -12,7 +12,7 @@ const ExploreBooks = () => {
     try {
       setError(""); // Reset error before fetching
       const response = await axios.post(
-        "https://readaround.onrender.com:6000/api/books/get",
+        "https://readaround.onrender.com:7000/api/books/get",
         { genre },
         {
           headers: {

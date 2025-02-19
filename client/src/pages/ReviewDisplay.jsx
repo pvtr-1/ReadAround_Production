@@ -78,7 +78,7 @@ const ReviewDisplay = () => {
 
     const fetchReviews = async () => {
       try {
-        const response = await axios.get(`https://readaround.onrender.com:6000/api/review/get?bid=${book_id}`);
+        const response = await axios.get(`https://readaround.onrender.com:7000/api/review/get?bid=${book_id}`);
         setReviews(response.data.data || []);
       } catch (err) {
         setError("Failed to load reviews. Please try again later.");
@@ -92,7 +92,7 @@ const ReviewDisplay = () => {
 
   const handleVote = async (reviewId, type) => {
     try {
-      const response = await axios.post(`https://readaround.onrender.com:6000/api/review/${reviewId}/${type}`, {
+      const response = await axios.post(`https://readaround.onrender.com:7000/api/review/${reviewId}/${type}`, {
         user_id: localStorage.getItem("user_id") // Replace with actual user ID
       });
       

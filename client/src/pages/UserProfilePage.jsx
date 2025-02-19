@@ -28,7 +28,7 @@ const UserProfilePage = () => {
       const book_data = user_data.saved_books;
       try {
         const bookRequests = book_data.map((bookId) =>
-          axios.get(`https://readaround.onrender.com:6000/api/books/${bookId}`)
+          axios.get(`https://readaround.onrender.com:7000/api/books/${bookId}`)
         );
         const responses = await Promise.all(bookRequests);
         const books = responses.map((response) => response.data.data);
@@ -42,7 +42,7 @@ const UserProfilePage = () => {
       const user_id = user_data.id;
       try {
         const response = await axios.get(
-          `https://readaround.onrender.com:6000/api/review/get?id=${user_id}`
+          `https://readaround.onrender.com:7000/api/review/get?id=${user_id}`
         );
         setReviewDetails(response.data.data);
       } catch (error) {
@@ -59,7 +59,7 @@ const UserProfilePage = () => {
   const checkFollowingStatus = async () => {
     try {
       const response = await axios.post(
-        "https://readaround.onrender.com:6000/api/social/check",
+        "https://readaround.onrender.com:7000/api/social/check",
         {
           follower: log_id,
           following: user_data.id,
@@ -77,13 +77,13 @@ const UserProfilePage = () => {
   const handleFollow = async () => {
     try {
       if (!isFollowing) {
-        await axios.post("https://readaround.onrender.com:6000/api/social/follow", {
+        await axios.post("https://readaround.onrender.com:7000/api/social/follow", {
           follower: log_id,
           following: user_data.id,
         });
         setIsFollowing(true);
       } else {
-        await axios.delete("https://readaround.onrender.com:6000/api/social/unfollow", {
+        await axios.delete("https://readaround.onrender.com:7000/api/social/unfollow", {
           data: { follower: log_id, followed: user_data.id },
         });
         setIsFollowing(false);

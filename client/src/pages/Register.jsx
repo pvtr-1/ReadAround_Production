@@ -260,7 +260,7 @@ const Register = () => {
 
     // API call to register user using Axios
     try {
-      const response = await axios.post("https://readaround.onrender.com:6000/api/register/user", formData, {
+      const response = await axios.post("https://readaround.onrender.com:7000/api/register/user", formData, {
         headers: {
           "Content-Type": "application/json",
         },
