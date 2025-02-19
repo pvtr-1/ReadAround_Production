@@ -6,6 +6,8 @@ const connectDB = require('./config/db');
 const user = require('./models/userModel');
 const path = require('path');
 const app = express();
+const authRoute = require('./routes/auth');
+const adminRoute = require('./routes/adminRoutes');
 
 const PORT = process.env.PORT || 4000;
 
@@ -23,7 +25,6 @@ app.use(cors({
 
 app.use(express.json());
 
-app.use('/uploads', express.static(path.join(__dirname, './uploads')));
 
 
 
@@ -61,13 +62,13 @@ const createAdmin = async () => {
 
 // Basic route
 app.get('/', (req, res) => {
-  res.send('Server is running on port 7000');
+  res.send(`Server is running on port ${PORT}`);
 });
 
 
-app.use('/api', require('./routes/auth'));
+app.use('/api', require(authRoute));
 // app.use('/api/reports', require('./routes/reportUpload'));
-app.use('/api/admin', require('./routes/adminRoutes'));
+app.use('/api/admin', require(adminRoute));
 
 
 
