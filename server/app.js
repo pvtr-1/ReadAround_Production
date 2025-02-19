@@ -66,7 +66,7 @@ app.get('/', (req, res) => {
 
 app.use('/api', require('./routes/auth'));
 // app.use('/api/reports', require('./routes/reportUpload'));
-app.use('/api/admin', require('./routes/admin'));
+app.use('/api/admin', require('./routes/adminRoutes'));
 
 
 
