@@ -6,8 +6,6 @@ const connectDB = require('./config/db');
 const user = require('./models/userModel');
 const path = require('path');
 const app = express();
-const authRoute = require('./routes/auth');
-const adminRoute = require('./routes/adminRoutes');
 
 const PORT = process.env.PORT || 4000;
 
@@ -66,9 +64,9 @@ app.get('/', (req, res) => {
 });
 
 
-app.use('/api', require(authRoute));
+app.use('/api', require('./routes/auth'));
 // app.use('/api/reports', require('./routes/reportUpload'));
-app.use('/api/admin', require(adminRoute));
+app.use('/api/admin', require('./routes/admin'));
 
 
 
