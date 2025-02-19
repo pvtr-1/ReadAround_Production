@@ -16,7 +16,7 @@ const Home = () => {
   useEffect(() => {
     const checkServer = async () => {
       try {
-        const response = await axios.get('http://localhost:7000');
+        const response = await axios.get('https://readaround.onrender.com:6000');
         console.log(response.data); // Should output 'Server is running on port 6000'
       } catch (error) {
         console.error('Error connecting to server:', error);

@@ -36,8 +36,8 @@ const AdminPanel = () => {
   const fetchUserReviewsAndComments = async (userId) => {
     try {
       const [reviewsResponse, commentsResponse] = await Promise.all([
-        axiosInstance.get(`http://localhost:7000/api/review/get/?id=${userId}`),
-        axiosInstance.get(`http://localhost:7000/api/review/comments/${userId}`),
+        axiosInstance.get(`https://readaround.onrender.com:6000/api/review/get/?id=${userId}`),
+        axiosInstance.get(`https://readaround.onrender.com:6000/api/review/comments/${userId}`),
       ]);
       
       setSelectedUserReviews(reviewsResponse.data.data);
@@ -50,7 +50,7 @@ const AdminPanel = () => {
 
   const handleDeleteReview = async (reviewId) => {
     try {
-      await axiosInstance.delete(`http://localhost:7000/api/review/${reviewId}`);
+      await axiosInstance.delete(`https://readaround.onrender.com:6000/api/review/${reviewId}`);
       setSuccess("Review deleted successfully.");
       setSelectedUserReviews((prev) => prev.filter((review) => review.review_id !== reviewId));
     } catch (err) {
@@ -60,7 +60,7 @@ const AdminPanel = () => {
 
   const handleDeleteComment = async (commentId) => {
     try {
-      await axiosInstance.delete(`http://localhost:7000/api/review/${commentId}/comment`);
+      await axiosInstance.delete(`https://readaround.onrender.com:6000/api/review/${commentId}/comment`);
       setSuccess("Comment deleted successfully.");
       setSelectedUserComments((prev) => prev.filter((comment) => comment.id !== commentId));
     } catch (err) {

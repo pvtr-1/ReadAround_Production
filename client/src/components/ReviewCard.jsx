@@ -25,7 +25,7 @@ const ReviewCard = ({ review }) => {
   const fetchUserData = async () => {
     try {
       const response = await axios.get(
-        `http://127.0.0.1:7000/api/user/details?id=${review.user_id}`
+        `https://readaround.onrender.com:6000/api/user/details?id=${review.user_id}`
       );
       setUserData(response.data.user);
     } catch (err) {
@@ -39,7 +39,7 @@ const ReviewCard = ({ review }) => {
   const fetchComments = async () => {
     try {
       const response = await axios.get(
-        `http://127.0.0.1:7000/api/review/${review.review_id}/comments`
+        `https://readaround.onrender.com:6000/api/review/${review.review_id}/comments`
       );
       const commentsData = response.data.data;
 
@@ -49,7 +49,7 @@ const ReviewCard = ({ review }) => {
         if (!usersMap[comment.user_id]) {
           try {
             const userResponse = await axios.get(
-              `http://127.0.0.1:7000/api/user/details?id=${comment.user_id}`
+              `https://readaround.onrender.com:6000/api/user/details?id=${comment.user_id}`
             );
             usersMap[comment.user_id] = userResponse.data.user;
           } catch (err) {
@@ -79,7 +79,7 @@ const ReviewCard = ({ review }) => {
 
     try {
       await axios.post(
-        `http://127.0.0.1:7000/api/review/${review.review_id}/comments`,
+        `https://readaround.onrender.com:6000/api/review/${review.review_id}/comments`,
         { user_id: log_id, content: commentText },
         { headers: { "Content-Type": "application/json" } }
       );

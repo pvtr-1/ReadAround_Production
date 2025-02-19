@@ -24,7 +24,7 @@ const BookUpdate = () => {
       return;
     }
     try {
-      const res = await axios.get(`http://localhost:7000/api/books/search?title=${term}`);
+      const res = await axios.get(`https://readaround.onrender.com:6000/api/books/search?title=${term}`);
       setSearchResults(res.data.books);
     } catch (err) {
       setError("Failed to search books");
@@ -45,7 +45,7 @@ const BookUpdate = () => {
 
   const fetchBooks = async (term) => {
     try {
-      const res = await axios.get(`http://localhost:7000/api/books/search?title=${term}`);
+      const res = await axios.get(`https://readaround.onrender.com:6000/api/books/search?title=${term}`);
       setBooks(res.data);
     } catch (error) {
       console.error("Error searching books:", error);
@@ -76,7 +76,7 @@ const BookUpdate = () => {
     if (!selectedBook) return;
 
     try {
-      await axios.put(`http://localhost:7000/api/books/${selectedBook.id}`, formData);
+      await axios.put(`https://readaround.onrender.com:6000/api/books/${selectedBook.id}`, formData);
       alert("Book updated successfully!");
       setSelectedBook(null);
       setFormData({ title: "", author: "", genre: "", description: "", publication_date: "", imageLink: "" });
@@ -92,7 +92,7 @@ const BookUpdate = () => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:7000/api/books/${selectedBook.id}`);
+      await axios.delete(`https://readaround.onrender.com:6000/api/books/${selectedBook.id}`);
       alert("Book deleted successfully!");
       setSelectedBook(null);
     } catch (error) {

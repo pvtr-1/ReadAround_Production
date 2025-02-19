@@ -392,7 +392,7 @@ const handleDeleteClick = async (reviewId) => {
   if (window.confirm("Are you sure you want to delete this review?")) {
     try {
       // API call to delete the review
-      await axios.delete(`http://localhost:7000/api/review/${reviewId}`);
+      await axios.delete(`https://readaround.onrender.com:6000/api/review/${reviewId}`);
       
       // Remove the review from the reviews state
       setReviews((prevReviews) => prevReviews.filter((review) => review.review_id !== reviewId));
@@ -410,7 +410,7 @@ const handleDeleteBook = async (bookId) => {
   if (window.confirm("Are you sure you want to remove this book from your saved list?")) {
     try {
       // API call to delete the book
-      await axios.delete("http://localhost:7000/api/delete/saved", {
+      await axios.delete("https://readaround.onrender.com:6000/api/delete/saved", {
         data: { book_id : bookId, user_id: log_id }, // Sending bookId in the request body
       });
 
