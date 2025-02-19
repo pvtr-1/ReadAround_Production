@@ -16,7 +16,7 @@ const SECRET_KEY = process.env.SECRET_KEY || 'your_jwt_secret';
 router.post('/register/user', async (req, res) => {
   const { username, email, password, phone } = req.body;
   
-
+  console.log(req.body);	
   try {
     // Check if the user already exists
     const existingUser = await User.findOne({ email });

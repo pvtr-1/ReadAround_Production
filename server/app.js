@@ -7,6 +7,7 @@ const user = require('./models/userModel');
 const path = require('path');
 const app = express();
 
+const PORT = process.env.PORT || 4000;
 
 dotenv.config();
 
@@ -71,8 +72,6 @@ app.use('/api/admin', require('./routes/adminRoutes'));
 
 
 
-// Listen on port 6000
-const PORT = 7000;
 app.listen(PORT, () => {
   console.log(`Server is listening on http://localhost:${PORT}`);
 });
